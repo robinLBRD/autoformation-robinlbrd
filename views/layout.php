@@ -1,172 +1,80 @@
-<?php
-/*
-  Auteur : Robin Laborde
-  Nom du projet : SiteDB-MVC
-  Description : site web tout simple qui utilise une base de donnée et qui à une structure M.V.C.
-  Version : 01
-  Classe : I.FDA.P3C
- */
+<!doctype html>
+<html lang="en">
 
-//page principale sur laquelle toutes les infos seront affichés selon le controlleur et l'action choisie
-?>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Jumbotron Template · Bootstrap</title>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/siteDB.css" rel="stylesheet" type="text/css"/>
-        <style>
-            body{
-                width: auto;
-                height: auto;
-                background-repeat: no-repeat;
-                background-size: cover;
-            }
-            header{
-                width: 1000px;
-                height: auto;
-                background-color: beige;
-                border-style: double;
-                border-radius: 10px;
-                color: saddlebrown;
-                min-height: 136px;
-            }
-            main{
-                margin-top: 10px;
-                width: 1000px;
-                height: auto;
-                background-color: beige;
-                border-style: double;
-                border-radius: 10px;
-            }
-            footer{
-                margin-top: 15px;
-                padding-top: 20px;
-                width: 1000px;
-                height: auto;
-                background-color: beige;
-                border-style: double;
-                border-radius: 10px;
-                text-align: center;
-                font-weight: bold;
-                min-height: 38px;
-            }
-            .centrer{
-                margin-left: auto;
-                margin-right: auto;
-            }
-            nav{
-                width: 1000px;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                border-bottom: solid black 1px;
-            }
-            .nav{
-                width: 1000px;
-                height: 40px;
-                background-color: beige;
-                text-align: center;
-                margin-bottom: 10px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-weight: bold;
-            }
-            h1{
-                text-align: center;
-                text-decoration: underline;
-            }
-            h2, h3, h4, h5, h6{
-                margin-left: 5px;
-            }
-            p{
-                margin-left: 15px;
-                margin-right: 15px;
-            }
-            fieldset{
-                margin-left: 15px;
-                width: 450px;
-                margin-bottom: 20px;
-            }
-            td{
-                min-width: 220px;
-            }
-            legend{
-                font-size: 20px;
-                font-weight: bold;
-            }
-            input[type="submit"]{
-                min-width: 100px;
-                width: auto;
-                margin-top: 5px;
-                margin-bottom: 10px;
-                margin-left: 10px;
-            }
-            input[type="date"]{
-                width: 163px;
-            }
-            input[type="email"]{
-                width: 193px;
-            }
-            select{
-                width: 198px;
-            }
-            a{
-                margin-top: 15px;
-                margin-bottom: 15px;
-                width: 150px;
-                text-align: center;
-            }
-            a:hover{
-                background-color: lightsteelblue;
-                border-radius: 10px;
-            }
-            a:visited{
-                color: black;
-            }
-            td{
-                min-width: 250px;
-            }
-            .captcha{
-                margin-left: 15px;
-                margin-top: 15px;
-            }
-            .action{
-                border : solid 1px black;
-                padding: 5px 5px 5px 5px;
-                text-decoration: none;
-                color: black;
-                margin-left: 5px;
-                margin-bottom: 5px;
-            }
-            .label{
-                margin-left: 10px;
-            }
-            .inputCreate{
-                margin-left: 5px;
-                margin-top: 2px;
-                margin-bottom: 5px;
-            }
-        </style>
-    </head>
-    <body>
-        <main class="centrer">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
 
-            <a id="accueil"><h1>Navigation</h1></a>
-            <nav>
-                <a href='?controller=pages&action=home'>Home</a>
-                <a href='?controller=posts&action=index'>Posts</a>
-                <a href='?controller=users&action=login'>Se connecter</a>
-            </nav>
-            <!-- appel du fichier inc/routes.inc.php qui vas afficher les informations en fonction du controlleur et l'action choisie-->
-            <?php require_once('inc/routes.inc.php'); ?>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="./views/css/bootstrap.css">
 
-        </main>
-    </body>
-    <footer class="centrer">
-        Robin E. Laborde I.FDA.P3C
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <a class="navbar-brand" href="?controller=pages&action=home">Gestionnaire de posts</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="?controller=posts&action=index">Posts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="?controller=users&action=login">Login</a>
+                </li>
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gérer un post</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" href="#">Créer</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>-->
+            </ul>
+            <!--<form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>-->
+        </div>
+    </nav>
+
+    <main role="main">
+        <!-- appel du fichier inc/routes.inc.php qui vas afficher les informations en fonction du controlleur et l'action choisie-->
+        <?php require_once('./inc/routes.inc.php'); ?>
+    </main>
+
+    <footer class="container">
+        <p>&copy; Robin E. Laborde I.FDA.P3C</p>
     </footer>
-    <html>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

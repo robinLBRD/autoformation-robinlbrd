@@ -9,29 +9,25 @@
 ?>
 
 <!-- listing des pots de la base de donnée -->
-<h3>Voici la liste de tous les posts:</h3>
+<div class="jumbotron">
+    <div class="container mt-4">
+        <h2>Voici la liste de tous les auteurs de posts :</h2>
 
-<?php
-//session_start();
-//parcour de tout les posts de $posts
-foreach ($posts as $post) {
-    ?>
-    <p>
         <?php
-        echo "<p>".$post->author."</p>";
-        //if ($_SESSION['logedIn'] == true) {
+        //parcour de tout les posts de $posts
+        foreach ($posts as $post) {
         ?>
-        <a class="action" href='?controller=posts&action=show&id=<?php echo $post->id; ?>'>Détail du post</a>
-        <?php // } elseif ($_SESSION["username"] == "admin") {  ?>
-                <!--<a href='?controller=posts&action=show&id=<?php // echo $post->id;   ?>'>Détail du post</a>-->
-        <a class="action" href='?controller=posts&action=update&id=<?php echo $post->id; ?>'>Update le post</a>
-        <a class="action" href='?controller=posts&action=delete&id=<?php echo $post->id; ?>'>Supprimer le post</a>
-    </p>
-    <?php
-    //}
-}
-//if ($_SESSION["logedIn"] == true) {
-?>
-    <br><a class="action" href='?controller=posts&action=create'>Créer un nouveau post</a><br><br>
-<?php
-// } ?>
+            <p>
+                <?php
+                echo "<h4 class=\"pl-3 mt-4\">" . $post->author . "</h4>";
+                ?>
+                <a class="btn btn-primary" href='?controller=posts&action=show&id=<?php echo $post->id; ?>'>Détail du post</a>
+                <a class="btn btn-primary" href='?controller=posts&action=update&id=<?php echo $post->id; ?>'>Update le post</a>
+                <a class="btn btn-danger" href='?controller=posts&action=delete&id=<?php echo $post->id; ?>'>Supprimer le post</a>
+            </p>
+        <?php
+        }
+        ?>
+        <br><a class="btn btn-primary" href='?controller=posts&action=create'>Créer un nouveau post</a><br><br>
+    </div>
+</div>

@@ -50,6 +50,7 @@ class Post {
     //méthode qui permet la création d'un post
     public static function create() {
         $db = Db::getInstance();
+        $message = null;
         //récupération des informations rentrées par l'utilisateur dans le formulaire de création 
         $auteur = filter_input(INPUT_POST, "auteur", FILTER_SANITIZE_STRING);
         $objet = filter_input(INPUT_POST, "objet", FILTER_SANITIZE_STRING);
@@ -57,7 +58,8 @@ class Post {
         if (!empty($auteur) || !empty($objet)) {
             $req = $db->prepare('INSERT INTO posts VALUES (:null, :auteur, :objet)');//préparation de la requête sql pour ajouter une post dans la table
             $req->execute(array('null' => null, 'auteur' => $auteur, 'objet' => $objet));//execution de la requête avec les bonnes valeurs
-            ?><p>Le post a bien été crée !</a><!--confirmation--><?php          
+            $message = "Le post à bien été créé";
+            return $message;
         }
     }
     

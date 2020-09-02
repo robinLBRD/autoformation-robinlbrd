@@ -32,7 +32,7 @@ class PostsController {
     public function create() {
         require_once('views/posts/create.php');
         //appel de la méthode create
-        Post::create();
+        $message = Post::create();
     }
 
     /*

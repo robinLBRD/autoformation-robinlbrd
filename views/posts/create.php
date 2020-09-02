@@ -8,11 +8,18 @@
  */
 ?>
 <!-- formulaire de création d'un post -->
-<h3>Créez un post !</h3>
-<form method="POST">
-    <label for="auteur" class="label">Auteur :</label><br>
-    <input type="text" class="inputCreate" id="auteur" name="auteur"><br/>
-    <label for="objet" class="label">Objet :</label><br>
-    <input type="text" class="inputCreate" id="objet" name="objet"><br/>
-    <input type="submit" name="valider" value="Valider">
-</form>
+<div class="jumbotron">
+  <div class="contrainer mt-4">
+    <h2>Créez un post !</h2>
+    <div class="ml-3">
+      <form method="POST">
+        <label for="auteur" class="label">Auteur :</label><br>
+        <input type="text" class="form-control" id="auteur" name="auteur"><br />
+        <label for="objet" class="label">Objet :</label><br>
+        <input type="text" class="form-control" id="objet" name="objet"><br />
+        <input type="submit" class="btn btn-success" name="valider" value="Valider l'ajout du post">
+      </form>
+      <p><?= $message ?></p>
+    </div>
+  </div>
+</div>

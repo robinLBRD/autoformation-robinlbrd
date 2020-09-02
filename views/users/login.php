@@ -12,11 +12,15 @@ $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 $pwd = filter_input(INPUT_POST, "pwd", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 ?>
 <!-- formulaire de login -->
-<h3>Connectez-vous !</h3>
-<form method="POST">
-    <label for="username" class="label">Nom d'utilisateur :</label><br>
-    <input type="text" class="inputCreate" name="username" value="<?= $username ?>"><br>
-    <label for="pwd" class="label">Mot de passe :</label><br>
-    <input type="password" class="inputCreate" name="pwd" value="<?= $pwd ?>"><br>
-    <input type="submit" name="valider" value="Valider">
-</form>
+<div class="jumbotron">
+  <div class="container ml-4">
+    <h2>Connectez-vous !</h2>
+    <form method="POST">
+      <label for="username" class="label">Nom d'utilisateur :</label><br>
+      <input type="text" class="form-control" name="username" value="<?= $username ?>"><br>
+      <label for="pwd" class="label">Mot de passe :</label><br>
+      <input type="password" class="form-control" name="pwd" value="<?= $pwd ?>"><br>
+      <input type="submit" class="btn btn-success" name="valider" value="Valider">
+    </form>
+  </div>
+</div>

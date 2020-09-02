@@ -9,6 +9,12 @@
 
 //affichage appelé en cas d'erreur
 ?>
-<p>Attention : c'est la page erreur</p>
+<div class="jumbotron">
+  <div class="container mt-4">
+    <h1 class="display-4">Attention !</h1>
 
-<p>Quelque chose d'inattendue à dû arriver</p>
+    <p>Vous vous trouvez sur la  page d'erreur ; quelque chose d'inattendue à dû arriver.</p>
+    <p>Rendez-vous à la page <a class="btn btn-primary" href="?controller=pages&action=home" role="button">Accueil</a> .</p>
+    <p></p>
+  </div>
+</div>

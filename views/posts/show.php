@@ -8,9 +8,14 @@
  */
 ?>
 <!-- affichage des informations du post sélectionné -->
-<h3>Voici les détails du post :</h3>
-
-<h4>Auteur :</h4>
-<p><?php echo $post->author; ?></p>
-<h4>Objet :</h4>
-<p><?php echo $post->content; ?></p>
+<div class="jumbotron">
+  <div class="container mt-4">
+    <h2>Voici les détails du post :</h2>
+    <div class="ml-3">
+      <h4>Auteur :</h4>
+      <p><?php echo $post->author; ?></p>
+      <h4>Objet :</h4>
+      <p><?php echo $post->content; ?></p>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
 
 //fonction qui gère les différents controlleurs et leurs actions
 function call($controller, $action) {
-    require_once('controllers/' . $controller . '_controller.php');
+    require_once('./controllers/' . $controller . '_controller.php');
 
     //parcour des controlleurs
     switch ($controller) {
