@@ -9,12 +9,13 @@
 
 //page principale sur laquelle toutes les infos seront affichés selon le controlleur et l'action choisie
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--<link href="css/siteDB.css" rel="stylesheet" type="text/css"/>-->
+        <link href="css/siteDB.css" rel="stylesheet" type="text/css"/>
         <style>
             body{
                 width: auto;
@@ -160,7 +161,7 @@
                 <a href='?controller=posts&action=index'>Posts</a>
                 <a href='?controller=users&action=login'>Se connecter</a>
             </nav>
-            <!-- appel du fichier inc/routes.inc.php qui vas afficher les informations en fonction du controlleur et l'action choisie -->
+            <!-- appel du fichier inc/routes.inc.php qui vas afficher les informations en fonction du controlleur et l'action choisie-->
             <?php require_once('inc/routes.inc.php'); ?>
 
         </main>
