@@ -30,7 +30,7 @@
         ?>
         <br><a class="btn btn-primary" href='?controller=posts&action=create'>Créer un nouveau post</a><br><br>
 
-        <div id="modalDelete" class="modal" role="dialog">
+        <div id="modalDelete" class="modal fade" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
