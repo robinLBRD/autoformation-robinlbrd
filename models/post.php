@@ -7,7 +7,8 @@
   Classe : I.FDA.P3C
  */
 
-class Post {
+class Post
+{
 
     //déclaration de 3 variables public qui s'apparentent au champs de la base de donnée
     //le public permaet d'acceder à la valeur de la variable directement : $post->author
@@ -16,7 +17,8 @@ class Post {
     public $content;
 
     //constructeur
-    public function __construct($id, $author, $content) {
+    public function __construct($id, $author, $content)
+    {
         //utilisation de $this-> car les variables ne sont pas static
         $this->id = $id;
         $this->author = $author;
@@ -24,32 +26,43 @@ class Post {
     }
 
     //méthode qui permet d'afficher tout les pots
-    public static function all() {
+    public static function all()
+    {
         $list = [];
-        $db = Db::getInstance();//stockage de la connection à la base de donnée dans db
-        $req = $db->query('SELECT * FROM posts');//requete sql qui récupère tout les posts
-
-        foreach ($req->fetchAll() as $post) {//fetchAll = tableau contenant tout les enregistrements retournées par la requête
-            $list[] = new Post($post['id'], $post['author'], $post['content']);//ajout des posts dans la list
+        $db = Db::getInstance(); //stockage de la connection à la base de donnée dans db
+        try {
+            $req = $db->query('SELECT * FROM posts'); //requete sql qui récupère tout les posts
+            foreach ($req->fetchAll() as $post) { //fetchAll = tableau contenant tout les enregistrements retournées par la requête
+                $list[] = new Post($post['id'], $post['author'], $post['content']); //ajout des posts dans la list
+            }
+            //return de la list des posts
+            return $list;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            $db = null;
         }
-        //return de la list des posts
-        return $list;
     }
 
     //méthode qui permet d'afficher les informations d'un post précis
-    public static function find($id) {
+    public static function find($id)
+    {
         $db = Db::getInstance();
-        $validId = intval($id);//vérification de si $id est bien un chiffre
-        $req = $db->prepare('SELECT * FROM posts WHERE id = :id');//préparation d'une requête sql permettant de retrouver un post grâce à son id
-        $req->bindParam(':id', $validId);
-        $req->execute();//ajout dans la requête de la valeur de l'id
-        $post = $req->fetch();//récupération des infomrmations de l'enregistrement obtenu
-
-        return new Post($post['id'], $post['author'], $post['content']);//return du post au complet
+        $validId = intval($id); //vérification de si $id est bien un chiffre
+        try {
+            $req = $db->prepare('SELECT * FROM posts WHERE id = :id'); //préparation d'une requête sql permettant de retrouver un post grâce à son id
+            $req->bindParam(':id', $validId);
+            $req->execute(); //ajout dans la requête de la valeur de l'id
+            $post = $req->fetch(); //récupération des infomrmations de l'enregistrement obtenu
+            return new Post($post['id'], $post['author'], $post['content']); //return du post au complet
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            $db = null;
+        }
     }
 
     //méthode qui permet la création d'un post
-    public static function create() {
+    public static function create()
+    {
         $db = Db::getInstance();
         $message = null;
         //récupération des informations rentrées par l'utilisateur dans le formulaire de création 
@@ -57,16 +70,18 @@ class Post {
         $objet = filter_input(INPUT_POST, "objet", FILTER_SANITIZE_STRING);
         //a faire : vérifier le contenu des variables
         if (!empty($auteur) || !empty($objet)) {
-            $req = $db->prepare('INSERT INTO posts VALUES (null, :auteur, :objet)');//préparation de la requête sql pour ajouter une post dans la table
-            $req->bindParam(':auteur', $auteur);
-            $req->bindParam(':objet', $objet);//execution de la requête avec les bonnes valeurs
-            $req->execute();//execution de la requête avec les bonnes valeurs
-
-            $message = "Le post à bien été créé";
-            return $message;
+            try {
+                $req = $db->prepare('INSERT INTO posts VALUES (null, :auteur, :objet)'); //préparation de la requête sql pour ajouter une post dans la table
+                $req->bindParam(':auteur', $auteur);
+                $req->bindParam(':objet', $objet); //execution de la requête avec les bonnes valeurs
+                $req->execute(); //execution de la requête avec les bonnes valeurs
+            } catch (PDOException $e) {
+                echo $e->getMessage();
+                $db = null;
+            }
         }
     }
-    
+
     /*
     public static function update($id) {
         $db = Db::getInstance();
@@ -76,14 +91,19 @@ class Post {
         $post = $req->fetch();
         require_once('views/posts/update.php');
     }*/
-    
+
     //méthode qui permet de supprmier un post
-    public static function delete($id) {
+    public static function delete($id)
+    {
         $db = Db::getInstance();
-        $validId = intval($id);//vérification de si $id est bien un chiffre
-        $req = $db->prepare('DELETE FROM posts WHERE id = :id');//préparation de la requête
-        $req->bindParam(':id', $validId);
-        $req->execute();//execution de la requête avec l'id
+        $validId = intval($id); //vérification de si $id est bien un chiffre
+        try {
+            $req = $db->prepare('DELETE FROM posts WHERE id = :id'); //préparation de la requête
+            $req->bindParam(':id', $validId);
+            $req->execute(); //execution de la requête avec l'id
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            $db = null;
+        }
     }
 }
-?>
