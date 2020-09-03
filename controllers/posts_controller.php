@@ -95,6 +95,7 @@ class PostsController
         if (!isset($_GET['id'])) {
             return call('pages', 'error');
         }
+
         //appel de la méthode delete qui supprimer le post en question
         $post = Post::delete($_GET['id']);
         //puis ré-affichage/actualisation de la list des posts
