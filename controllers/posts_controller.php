@@ -28,57 +28,62 @@ class PostsController
         }
         //appel de la méthode find pour afficher le détail du post en question
         $post = Post::find($_GET['id']);
+        //affichage des details du posts
         require_once('views/posts/show.php');
     }
 
-    //création d'un post
+    //appel du formulaire de création de posts quand l'utilisateur appui sur le bonton de création
     public function create()
     {
+        //affichage du formulaire
         require_once('views/posts/create.php');
-        //appel de la méthode create
     }
 
-    public function insert() {
-        // add a new post in database
+    public function insert()
+    {
+        //vérification de si il y a bien un objet
         if (!isset($_POST['auteur']) || !isset($_POST['objet'])) {
             return call('pages', 'error');
         }
-        // insert post
+        //appel de la fonction create avec les valeurs saisies
         $post = Post::create($_POST['auteur'], $_POST['objet']);
-        // check if error
+        //puis ré-affichage/actualisation de la list des posts
         if ($post) {
-            // show posts
+            //appel de la fonction index pour lister les posts
             $this->index();
         } else {
             return call('pages', 'error');
         }
     }
 
+    //edit d'un post(permet d'afficher le post qui doit être modifié)
     public function edit()
     {
-        // we expect a url of form ?controller=posts&action=show&id=x
-        // without an id we just redirect to the error page as we need the post id to find it in the database
-        if (!isset($_GET['id']))
+        //si il n'y a pas d'id alors on affihe une erreur sur la page
+        if (!isset($_GET['id'])) {
             return call('page', 'error');
+        }
 
-        // we use the given id to get the right post
+        //recherche des informations di post à modifier en utilisant la fonction find
         $post = Post::find($_GET['id']);
-        // view form for update content of current post
+        //affichage du formulaire de update
         require_once('views/posts/update.php');
     }
+
     //update d'un post
     public function update()
     {
+        //vérification de si il y a bien un objet
         if (!isset($_GET['id']) || !isset($_POST['objet']))
-        return call('pages', 'error');
+            return call('pages', 'error');
 
-        // we use the given id to update the right post
+        //appel de la fonction update avec comme paramètre l'id du post modifié et l'objet modifié par l'utilisateur
         $post = Post::update($_GET['id'], $_POST['objet']);
-        // check if error
+        //puis ré-affichage/actualisation de la list des posts
         if ($post) {
-            // show posts
+            //appel de la fonction index pour lister les posts
             $this->index();
-        } else {
+        } else { //en cas d'erreur ($post = false) alors
             return call('pages', 'error');
         }
     }
@@ -94,9 +99,9 @@ class PostsController
         $post = Post::delete($_GET['id']);
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
-            // show posts
+            //appel de la fonction index pour lister les posts
             $this->index();
-        } else {
+        } else { //en cas d'erreur ($post = false) alors
             return call('pages', 'error');
         }
     }

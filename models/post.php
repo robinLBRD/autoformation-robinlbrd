@@ -28,12 +28,12 @@ class Post
     //méthode qui permet d'afficher tout les pots
     public static function all()
     {
-        $list = [];
+        $list = []; //liste vide
         $db = Db::getInstance(); //stockage de la connection à la base de donnée dans db
         try {
             $req = $db->query('SELECT * FROM posts'); //requete sql qui récupère tout les posts
             foreach ($req->fetchAll() as $post) { //fetchAll = tableau contenant tout les enregistrements retournées par la requête
-                $list[] = new Post($post['id'], $post['author'], $post['content']); //ajout des posts dans la list
+                $list[] = new Post($post['id'], $post['author'], $post['content']); //ajout des objets posts dans la list
             }
             //return de la list des posts
             return $list;
@@ -76,15 +76,16 @@ class Post
         }
     }
 
+    //méthode qui permet de mettre à jour un post
     public static function update($id, $content)
     {
         $db = Db::getInstance();
-        $validId = intval($id);
+        $validId = intval($id); //vérification de si $id est bien un chiffre
         try {
-            $req = $db->prepare('UPDATE posts SET content = :content WHERE id = :id');//préparation de la requête
+            $req = $db->prepare('UPDATE posts SET content = :content WHERE id = :id'); //préparation de la requête
             $req->bindParam(':content', $content);
             $req->bindParam(':id', $validId);
-            $result = $req->execute();
+            $result = $req->execute(); //execution de la requête avec les bonnes valeurs
             return $result; //retourne le nombre de modification effectuées ou false si la requete n'a pas fonctionnée
         } catch (PDOException $e) {
             echo $e->getMessage();
@@ -100,7 +101,7 @@ class Post
         try {
             $req = $db->prepare('DELETE FROM posts WHERE id = :id'); //préparation de la requête
             $req->bindParam(':id', $validId);
-            $result = $req->execute(); //execution de la requête avec l'id
+            $result = $req->execute(); //execution de la requête avec le bon id
             return $result; //retourne le nombre de modification effectuées ou false si la requete n'a pas fonctionnée
         } catch (PDOException $e) {
             echo $e->getMessage();

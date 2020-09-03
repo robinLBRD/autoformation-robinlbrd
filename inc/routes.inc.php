@@ -54,4 +54,3 @@ if (array_key_exists($controller, $controllers)) {
     //sinon affichage de l'erreur
     call('pages', 'error');
 }
-?>
