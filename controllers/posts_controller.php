@@ -101,6 +101,7 @@ class PostsController
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
             //appel de la fonction index pour lister les posts
+            $_SESSION["message"] = ["success"=>"Le post à bien été supprimé"];
             $this->index();
         } else { //en cas d'erreur ($post = false) alors
             return call('pages', 'error');

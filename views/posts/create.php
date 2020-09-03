@@ -9,9 +9,8 @@
 ?>
 <!-- formulaire de création d'un post -->
 <div class="jumbotron">
-  <div class="contrainer mt-4">
+  <div class="container mt-4">
     <h2>Créez un post !</h2>
-    <div class="ml-3">
       <form method="POST" action="?controller=posts&action=insert">
         <div class="form-group">
           <label for="auteur" class="label">Auteur :</label><br>
@@ -23,6 +22,5 @@
         </div>
         <input type="submit" class="btn btn-success" name="valider" value="Valider l'ajout du post">
       </form>
-    </div>
   </div>
 </div>

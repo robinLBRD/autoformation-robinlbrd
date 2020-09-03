@@ -16,6 +16,7 @@
       <p><?php echo $post->author; ?></p>
       <h4>Objet :</h4>
       <p><?php echo $post->content; ?></p>
+      <p><a class="btn btn-primary" href="?controller=posts&action=index" role="button">Retourner à la liste des post</a></p>
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ $pwd = filter_input(INPUT_POST, "pwd", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 ?>
 <!-- formulaire de login -->
 <div class="jumbotron">
-  <div class="container ml-4">
+  <div class="container mt-4">
     <h2>Connectez-vous !</h2>
     <form method="POST">
       <div class="form-group">

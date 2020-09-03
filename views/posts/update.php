@@ -9,7 +9,7 @@
 ?>
 <!-- formulaire de mise à jour d'un post -->
 <div class="jumbotron">
-  <div class="contrainer mt-4">
+  <div class="contrainer mt-4 col-md-8 offset-md-2">
     <h2>Mettre à jour le post !</h2>
     <div class="ml-3">
       <!-- une fois que le bouton submit est appuyé alors j'appel la fonction de mise à jour de post -->
