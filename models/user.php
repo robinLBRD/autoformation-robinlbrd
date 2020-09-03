@@ -32,7 +32,9 @@ class User {
             $list = [];
             $db = Db::getInstance();
             $req = $db->prepare('SELECT * FROM user WHERE user = :user AND pwd = :pwd'); //préparation de la requête de vérificaion
-            $req->execute(array('user' => $user, 'pwd' => $pwd)); //éxécution de la requête avec les bonnes valeurs
+            $req->bindParam(':user', $user);
+            $req->bindParam(':pwd', $pwd);
+            $req->execute(); //éxécution de la requête avec les bonnes valeurs
             //renvoie de true ou false selon si le compte exsite ou non
             $users = $req->fetch();
             if ($users == false) {

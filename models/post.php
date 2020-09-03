@@ -41,7 +41,8 @@ class Post {
         $db = Db::getInstance();
         $validId = intval($id);//vérification de si $id est bien un chiffre
         $req = $db->prepare('SELECT * FROM posts WHERE id = :id');//préparation d'une requête sql permettant de retrouver un post grâce à son id
-        $req->execute(array('id' => $validId));//ajout dans la requête de la valeur de l'id
+        $req->bindParam(':id', $validId);
+        $req->execute();//ajout dans la requête de la valeur de l'id
         $post = $req->fetch();//récupération des infomrmations de l'enregistrement obtenu
 
         return new Post($post['id'], $post['author'], $post['content']);//return du post au complet
@@ -56,8 +57,11 @@ class Post {
         $objet = filter_input(INPUT_POST, "objet", FILTER_SANITIZE_STRING);
         //a faire : vérifier le contenu des variables
         if (!empty($auteur) || !empty($objet)) {
-            $req = $db->prepare('INSERT INTO posts VALUES (:null, :auteur, :objet)');//préparation de la requête sql pour ajouter une post dans la table
-            $req->execute(array('null' => null, 'auteur' => $auteur, 'objet' => $objet));//execution de la requête avec les bonnes valeurs
+            $req = $db->prepare('INSERT INTO posts VALUES (null, :auteur, :objet)');//préparation de la requête sql pour ajouter une post dans la table
+            $req->bindParam(':auteur', $auteur);
+            $req->bindParam(':objet', $objet);//execution de la requête avec les bonnes valeurs
+            $req->execute();//execution de la requête avec les bonnes valeurs
+
             $message = "Le post à bien été créé";
             return $message;
         }
@@ -78,7 +82,8 @@ class Post {
         $db = Db::getInstance();
         $validId = intval($id);//vérification de si $id est bien un chiffre
         $req = $db->prepare('DELETE FROM posts WHERE id = :id');//préparation de la requête
-        $req->execute(array('id' => $validId));//execution de la requête avec l'id
+        $req->bindParam(':id', $validId);
+        $req->execute();//execution de la requête avec l'id
     }
 }
 ?>
