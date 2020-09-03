@@ -9,12 +9,8 @@
 
 //controller des pages
 class PagesController {
-
     //page d'accueil
     public function home() {
-        //a faire : utiliser la session pour mettre le nom d'utilisateur connecté
-        $prenom = 'Robin';
-        $nom = 'Laborde';
         require_once('views/pages/home.php');
     }
 
@@ -22,7 +18,4 @@ class PagesController {
     public function error() {
         require_once('./views/pages/error.php');
     }
-
 }
-
-?>

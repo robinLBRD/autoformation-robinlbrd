@@ -60,8 +60,8 @@ class Post
         }
     }
 
-    //méthode qui permet la création d'un post
-    public static function create($auteur, $objet)
+    //méthode qui permet d'inserer un post dans la base de donnée
+    public static function insert($auteur, $objet)
     {
         $db = Db::getInstance();
         try {

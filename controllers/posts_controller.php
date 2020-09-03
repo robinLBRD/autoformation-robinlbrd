@@ -10,9 +10,8 @@
 //controlleur des posts
 class PostsController
 {
-
     //affichage de tout les posts
-    public function index()
+    public function list()
     {
         //appel de la méthode all qui affiche tout les posts
         $posts = Post::all();
@@ -20,7 +19,7 @@ class PostsController
     }
 
     //affichage du détail d'un post
-    public function show()
+    public function detail()
     {
         //si il n'y a pas d'id alors on affihe une erreur sur la page
         if (!isset($_GET['id'])) {
@@ -32,13 +31,14 @@ class PostsController
         require_once('views/posts/show.php');
     }
 
-    //appel du formulaire de création de posts quand l'utilisateur appui sur le bonton de création
+    //appel du formulaire de création de posts
     public function create()
     {
-        //affichage du formulaire
+        //affichage du formulaire qui ensuite conduirra grace au "action=" à la fonction de création d'un post
         require_once('views/posts/create.php');
     }
 
+    //insertion d'un nouveau post dans la base
     public function insert()
     {
         //vérification de si il y a bien un objet
@@ -46,24 +46,23 @@ class PostsController
             return call('pages', 'error');
         }
         //appel de la fonction create avec les valeurs saisies
-        $post = Post::create($_POST['auteur'], $_POST['objet']);
+        $post = Post::insert($_POST['auteur'], $_POST['objet']);
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
             //appel de la fonction index pour lister les posts
-            $this->index();
+            $this->list();
         } else {
             return call('pages', 'error');
         }
     }
 
-    //edit d'un post(permet d'afficher le post qui doit être modifié)
+    //affiche le formulaire de modification avec comme information le post qui doit être modifié
     public function edit()
     {
         //si il n'y a pas d'id alors on affihe une erreur sur la page
         if (!isset($_GET['id'])) {
             return call('page', 'error');
         }
-
         //recherche des informations di post à modifier en utilisant la fonction find
         $post = Post::find($_GET['id']);
         //affichage du formulaire de update
@@ -82,7 +81,7 @@ class PostsController
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
             //appel de la fonction index pour lister les posts
-            $this->index();
+            $this->list();
         } else { //en cas d'erreur ($post = false) alors
             return call('pages', 'error');
         }
@@ -102,9 +101,10 @@ class PostsController
         if ($post) {
             //appel de la fonction index pour lister les posts
             $_SESSION["message"] = ["success"=>"Le post à bien été supprimé"];
-            $this->index();
+            $this->list();
         } else { //en cas d'erreur ($post = false) alors
             return call('pages', 'error');
         }
     }
 }
+?>

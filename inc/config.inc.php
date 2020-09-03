@@ -8,10 +8,10 @@
  */
 
 //constantes neccessaires à la connexion à la base de donnée
-define("serveur", "mysql");
-define("host", "localhost");
-define("dbName", "dbsitemvc");
-define("user", "root");
-define("password", '');
+define("SERVEUR", "mysql");
+define("HOST", "localhost");
+define("DBNAME", "dbsitemvc");
+define("USER", "root");
+define("PWD", '');
 ?>
 

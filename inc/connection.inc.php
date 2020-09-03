@@ -26,7 +26,7 @@ class Db {
         if (!isset(self::$instance)) {
             $pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;//defini le rapport d'erreur ATTR_ERRMODE par une exeption qui represente une erreur pdo ERRMODE_EXCEPTION
             //je remplace les informations neccessaires à la connexion par les contantes du fichier config.inc.php
-            self::$instance = new PDO(serveur . ':host=' . host . ';dbname=' . dbName, user, password, $pdo_options);
+            self::$instance = new PDO(SERVEUR . ':host=' . HOST . ';dbname=' . DBNAME, USER, PWD, $pdo_options);
         }
         //return de la connexion à la base
         return self::$instance;
