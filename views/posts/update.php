@@ -10,9 +10,13 @@
 <!-- formulaire de mise à jour d'un post -->
 <p>Update un post !</p>
 <form method="POST">
+  <div class="form-group">
     <label for="auteur">Auteur :</label>
-    <input type="text" id="auteur" name="auteur" value="<?php echo $post->author; ?>"><br/>
+    <input type="text" id="auteur" name="auteur" value="<?php echo $post->author; ?>">
+  </div>
+  <div class="form-group">
     <label for="objet">Objet :</label>
-    <input type="text" id="objet" name="objet" value="<?php echo $post->content; ?>"><br/>
-    <input type="submit" name="valider" value="Valider">
+    <input type="text" id="objet" name="objet" value="<?php echo $post->content; ?>">
+  </div>
+  <input type="submit" name="valider" value="Valider">
 </form>

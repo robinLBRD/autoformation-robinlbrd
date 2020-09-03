@@ -13,10 +13,14 @@
     <h2>Créez un post !</h2>
     <div class="ml-3">
       <form method="POST">
-        <label for="auteur" class="label">Auteur :</label><br>
-        <input type="text" class="form-control" id="auteur" name="auteur"><br />
-        <label for="objet" class="label">Objet :</label><br>
-        <input type="text" class="form-control" id="objet" name="objet"><br />
+        <div class="form-group">
+          <label for="auteur" class="label">Auteur :</label><br>
+          <input type="text" class="form-control" id="auteur" name="auteur">
+        </div>
+        <div class="form-group">
+          <label for="objet" class="label">Objet :</label><br>
+          <input type="text" class="form-control" id="objet" name="objet">
+        </div>
         <input type="submit" class="btn btn-success" name="valider" value="Valider l'ajout du post">
       </form>
       <p><?= $message ?></p>

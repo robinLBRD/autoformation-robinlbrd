@@ -16,10 +16,14 @@ $pwd = filter_input(INPUT_POST, "pwd", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
   <div class="container ml-4">
     <h2>Connectez-vous !</h2>
     <form method="POST">
-      <label for="username" class="label">Nom d'utilisateur :</label><br>
-      <input type="text" class="form-control" name="username" value="<?= $username ?>"><br>
-      <label for="pwd" class="label">Mot de passe :</label><br>
-      <input type="password" class="form-control" name="pwd" value="<?= $pwd ?>"><br>
+      <div class="form-group">
+        <label for="username" class="label">Nom d'utilisateur :</label><br>
+        <input type="text" class="form-control" name="username" value="<?= $username ?>">
+      </div>
+      <div class="form-group">
+        <label for="pwd" class="label">Mot de passe :</label><br>
+        <input type="password" class="form-control" name="pwd" value="<?= $pwd ?>">
+      </div>
       <input type="submit" class="btn btn-success" name="valider" value="Valider">
     </form>
   </div>
