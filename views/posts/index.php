@@ -20,6 +20,23 @@
             </div>
         </div>
 
+        <!--
+        <form action="" method="get" class="border broder-primary rounded p-3 mt-2">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="recherche" name="recherche">
+                </div>
+                <div class="col">
+                    <select name="" class="form-control">
+
+                    </select>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-success btn-block">Rechercher</button>
+                </div>
+            </div>
+        </form>-->
+
         <table class="table table-striped">
             <thead>
                 <tr class="d-flex">
@@ -66,8 +83,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>';
-                $_SESSION["message"] = [];
             }
+            $_SESSION["message"] = [];
         }
         ?>
 
