@@ -37,7 +37,7 @@ function call($controller, $action) {
 
 //varible contenant les différents controlleurs et leurs actions
 $controllers = array('pages' => ['home', 'error'],
-    'posts' => ['index', 'show', 'create', 'update', 'delete'],
+    'posts' => ['index', 'show', 'create', 'update', 'delete', 'edit', 'insert'],
     'users' => ['login']);
 
 //si le controlleur present dans l'url est un controlleur connu

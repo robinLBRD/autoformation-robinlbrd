@@ -61,36 +61,36 @@ class Post
     }
 
     //méthode qui permet la création d'un post
-    public static function create()
+    public static function create($auteur, $objet)
     {
         $db = Db::getInstance();
-        $message = null;
-        //récupération des informations rentrées par l'utilisateur dans le formulaire de création 
-        $auteur = filter_input(INPUT_POST, "auteur", FILTER_SANITIZE_STRING);
-        $objet = filter_input(INPUT_POST, "objet", FILTER_SANITIZE_STRING);
-        //a faire : vérifier le contenu des variables
-        if (!empty($auteur) || !empty($objet)) {
-            try {
-                $req = $db->prepare('INSERT INTO posts VALUES (null, :auteur, :objet)'); //préparation de la requête sql pour ajouter une post dans la table
-                $req->bindParam(':auteur', $auteur);
-                $req->bindParam(':objet', $objet); //execution de la requête avec les bonnes valeurs
-                $req->execute(); //execution de la requête avec les bonnes valeurs
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-                $db = null;
-            }
+        try {
+            $req = $db->prepare('INSERT INTO posts (author, content) VALUES (:auteur, :objet)'); //préparation de la requête sql pour ajouter une post dans la table
+            $req->bindParam(':auteur', $auteur);
+            $req->bindParam(':objet', $objet);
+            $result = $req->execute(); //execution de la requête avec les bonnes valeurs
+            return $result; //retourne le nombre de modification effectuées ou false si la requete n'a pas fonctionnée
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            $db = null;
         }
     }
 
-    /*
-    public static function update($id) {
+    public static function update($id, $content)
+    {
         $db = Db::getInstance();
-        $id = intval($id);
-        $req = $db->prepare('SELECT * FROM posts WHERE id = :id');
-        $req->execute(array('id' => $id));
-        $post = $req->fetch();
-        require_once('views/posts/update.php');
-    }*/
+        $validId = intval($id);
+        try {
+            $req = $db->prepare('UPDATE posts SET content = :content WHERE id = :id');//préparation de la requête
+            $req->bindParam(':content', $content);
+            $req->bindParam(':id', $validId);
+            $result = $req->execute();
+            return $result; //retourne le nombre de modification effectuées ou false si la requete n'a pas fonctionnée
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            $db = null;
+        }
+    }
 
     //méthode qui permet de supprmier un post
     public static function delete($id)
@@ -100,7 +100,8 @@ class Post
         try {
             $req = $db->prepare('DELETE FROM posts WHERE id = :id'); //préparation de la requête
             $req->bindParam(':id', $validId);
-            $req->execute(); //execution de la requête avec l'id
+            $result = $req->execute(); //execution de la requête avec l'id
+            return $result; //retourne le nombre de modification effectuées ou false si la requete n'a pas fonctionnée
         } catch (PDOException $e) {
             echo $e->getMessage();
             $db = null;

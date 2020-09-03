@@ -22,7 +22,7 @@
                 echo "<h4 class=\"pl-3 mt-4\">" . $post->author . "</h4>";
                 ?>
                 <a class="btn btn-primary" href='?controller=posts&action=show&id=<?php echo $post->id; ?>'>Détail du post</a>
-                <a class="btn btn-primary" href='?controller=posts&action=update&id=<?php echo $post->id; ?>'>Update le post</a>
+                <a class="btn btn-primary" href='?controller=posts&action=edit&id=<?php echo $post->id; ?>'>Mettre à jour le post</a>
                 <a class="btn btn-danger" href='?controller=posts&action=delete&id=<?php echo $post->id; ?>'>Supprimer le post</a>
             </p>
         <?php
