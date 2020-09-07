@@ -63,7 +63,7 @@
                     echo "</td>";
                     echo "<td class='col-md-2'>";
                 ?>
-                    <a class="btn btn-primary" href='?controller=posts&action=show&id=<?php echo $post->id; ?>'><i class="fas fa-info-circle"></i></a>
+                    <a class="btn btn-primary" href='?controller=posts&action=detail&id=<?php echo $post->id; ?>'><i class="fas fa-info-circle"></i></a>
                     <a class="btn btn-primary" href='?controller=posts&action=edit&id=<?php echo $post->id; ?>'><i class="fa fa-pen"></i></a>
                     <a class="btn btn-danger" data-suppression="?controller=posts&action=delete&id=<?php echo $post->id; ?>" href='#modalDelete' data-toggle="modal"><i class="fa fa-trash"></i></a>
 

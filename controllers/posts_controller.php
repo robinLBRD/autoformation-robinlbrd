@@ -49,6 +49,8 @@ class PostsController
         $post = Post::insert($_POST['auteur'], $_POST['objet']);
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
+            //message de validation
+            $_SESSION["message"] = ["success"=>"Le post a bien été ajouté !"];
             //appel de la fonction index pour lister les posts
             $this->list();
         } else {
@@ -80,6 +82,8 @@ class PostsController
         $post = Post::update($_GET['id'], $_POST['objet']);
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
+            //message de validation
+            $_SESSION["message"] = ["success"=>"Le post a bien été mit à jour"];
             //appel de la fonction index pour lister les posts
             $this->list();
         } else { //en cas d'erreur ($post = false) alors
@@ -99,8 +103,9 @@ class PostsController
         $post = Post::delete($_GET['id']);
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
+            //message de validation
+            $_SESSION["message"] = ["success"=>"Le post a bien été supprimé"];
             //appel de la fonction index pour lister les posts
-            $_SESSION["message"] = ["success"=>"Le post à bien été supprimé"];
             $this->list();
         } else { //en cas d'erreur ($post = false) alors
             return call('pages', 'error');

@@ -1,4 +1,4 @@
-<?php 
+<?php ob_start();
 session_start();
 /*
   Auteur : Robin Laborde
@@ -53,7 +53,7 @@ session_start();
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="?controller=posts&action=index">Posts</a>
+                    <a class="nav-link" href="?controller=posts&action=list">Posts</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="?controller=users&action=login">Login</a>
@@ -99,3 +99,6 @@ session_start();
 </body>
 
 </html>
+<?php
+ob_end_flush();
+?>

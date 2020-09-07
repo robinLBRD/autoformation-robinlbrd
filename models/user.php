@@ -24,7 +24,9 @@ class User
         $this->pwd = $pwd;
     }
 
-    //méthode de vérification de l'éxistance du compte rentré par l'utilisateur
+    /**
+     * Verification de l'éxistance du compte dans la base de donnée
+     */
     public static function verifyAcount()
     {
         if (isset($_POST["valider"])) { //si l'utilisateur appuye sur le bouton validé
