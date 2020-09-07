@@ -7,7 +7,7 @@
   Classe : I.FDA.P3C
  */
 
-//page surlaquelle on arrive au tout début
+//page sur laquelle on arrive au tout début
 require_once('inc/connection.inc.php');
 
 //test pour savoir si il y a déja un controlleur ou une action présente dans l'url

@@ -24,37 +24,49 @@ class User
         $this->pwd = $pwd;
     }
 
-    /**
-     * Verification de l'éxistance du compte dans la base de donnée
-     */
-    public static function verifyAcount()
+    public static function find($user)
     {
-        if (isset($_POST["valider"])) { //si l'utilisateur appuye sur le bouton validé
-            //récupération des valeurs de l'input
-            $user = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-            $pwd = filter_input(INPUT_POST, "pwd", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-            $list = [];
-            $db = Db::getInstance();
-            try {
-                $req = $db->prepare('SELECT * FROM user WHERE user = :user AND pwd = :pwd'); //préparation de la requête de vérificaion
-                $req->bindParam(':user', $user);
-                $req->bindParam(':pwd', $pwd);
-                $req->execute(); //éxécution de la requête avec les bonnes valeurs
-                //renvoie de true ou false selon si le compte exsite ou non
-                $users = $req->fetch();
-                if ($users == false) {
-                    //return false;
-                    ?><p>Attention : ce compte n'éxiste pas ! Veuillez verifier le nom d'utilisateur ou le mot de passe rentré</p><?php
-                } else {
-                    //return true;
-                    ?><p>Vous êtes connecté(e) ! Bienvenue.</p><?php
-                    }
-                } catch (PDOException $e) {
-                    echo $e->getMessage();
-                    $db = null;
-                }
-            }
+        $db = Db::getInstance();
+        $req = $db->prepare('SELECT idUser, pwd FROM user WHERE user = :user');
+        /* the query was prepared, now we replace :user with our actual $user value */
+        $req->execute(array(':user' => $user));
+        $user = $req->fetch(PDO::FETCH_ASSOC);
+        if ($req->rowCount() > 0) {
+            return new User($user['idUser'], $user, $user['pwd']);
+        } else {
+            return false;
         }
     }
-    ?>
+
+    /**
+     * detruit la session actuelle
+     *
+     * @return void
+     */
+    public static function logout()
+    {
+        $_SESSION = array();
+        session_destroy();
+    }
+
+    public static function insert($userName, $pwd) {
+        $db = Db::getInstance();
+        $req = $db->prepare('INSERT INTO user (user, pwd) VALUES (:user, :pwd)');
+        $req->bindParam(':user', $userName);
+        $req->bindParam(':pwd', password_hash($pwd, PASSWORD_DEFAULT));
+        $retour = $req->execute();
+        return $retour;
+    }
+
+    public static function all() {
+        $list = [];
+        $db = Db::getInstance();
+        $req = $db->query('SELECT idUser, user FROM user');
+
+        // we create a list of User objects from the database results
+        foreach ($req->fetchAll() as $user) {
+            $list[] = new User($user['idUser'], $user['user'], NULL);
+        }
+        return $list;
+    }
+}

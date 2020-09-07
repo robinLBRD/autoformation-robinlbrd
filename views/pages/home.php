@@ -11,7 +11,8 @@
 <!-- Main jumbotron for a primary marketing message or call to action -->
 <div class="jumbotron">
   <div class="container">
-    <h1 class="display-4">Bienvenue !</h1>
+    <!-- Affichage du nom d'utilisateur si il est logué -->
+    <h1 class="display-4">Bienvenue <?php $unserName = isset($_SESSION['user_session']) ? $_SESSION['user_session'] : 'Visiteur'; echo $unserName; ?> !</h1>
     <p>Voici le nouveaux design de mon site réalisé à l'aide bootstrap</p>
   </div>
 </div>

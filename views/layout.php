@@ -18,7 +18,7 @@ session_start();
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Jumbotron Template · Bootstrap</title>
+    <title>Gestionnire de Posts</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
 
@@ -45,19 +45,9 @@ session_start();
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand" href="?controller=pages&action=home">Gestionnaire de posts</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="?controller=posts&action=list">Posts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?controller=users&action=login">Login</a>
-                </li>
+                <?php require_once("./inc/menu.inc.php"); ?>
                 <!--<li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gérer un post</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -90,10 +80,11 @@ session_start();
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
     <script type="text/javascript">
-        $("a[data-suppression]").click(function(){
-            var lien = $(this).attr("data-suppression");//recup du lien stocker dans les boutons poubelle
-            $("#btnSuppr").attr("href", lien);// met le lien dans le href du bouton supprmier
+        $("a[data-suppression]").click(function() {
+            var lien = $(this).attr("data-suppression"); //recup du lien stocker dans les boutons poubelle
+            $("#btnSuppr").attr("href", lien); // met le lien dans le href du bouton supprmier
         });
     </script>
 </body>

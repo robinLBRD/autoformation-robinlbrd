@@ -83,7 +83,7 @@ class PostsController
         //puis ré-affichage/actualisation de la list des posts
         if ($post) {
             //message de validation
-            $_SESSION["message"] = ["success"=>"Le post a bien été mit à jour"];
+            $_SESSION["message"] = ["success"=>"Le post a bien été mis à jour"];
             //appel de la fonction index pour lister les posts
             $this->list();
         } else { //en cas d'erreur ($post = false) alors
