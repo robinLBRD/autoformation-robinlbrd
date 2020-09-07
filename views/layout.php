@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+/*
+  Auteur : Robin Laborde
+  Nom du projet : autoformation-RobinLBRD
+  Description : site web qui utilise une base de donnée et une structure M.V.C.
+  Version : 02
+  Classe : I.FDA.P3C
+ */
+?>
+
 <!doctype html>
 <html lang="en">
 

@@ -1,9 +1,9 @@
 <?php
 /*
   Auteur : Robin Laborde
-  Nom du projet : SiteDB-MVC
-  Description : site web tout simple qui utilise une base de donnée et qui à une structure M.V.C.
-  Version : 01
+  Nom du projet : autoformation-RobinLBRD
+  Description : site web qui utilise une base de donnée et une structure M.V.C.
+  Version : 02
   Classe : I.FDA.P3C
  */
 
@@ -25,8 +25,12 @@ class Post
         $this->content = $content;
     }
 
-    //méthode qui permet d'afficher tout les pots
-    public static function all()
+    /**
+     * Liste les posts de la base de donnée
+     * 
+     * @return array
+     */
+    public static function all() : array
     {
         $list = []; //liste vide
         $db = Db::getInstance(); //stockage de la connection à la base de donnée dans db
@@ -43,8 +47,13 @@ class Post
         }
     }
 
-    //méthode qui permet d'afficher les informations d'un post précis
-    public static function find($id)
+    /**
+     * Trouve le détail d'un post
+     * 
+     * @param int $id
+     * @return Post
+     */
+    public static function find(int $id) : Post
     {
         $db = Db::getInstance();
         $validId = intval($id); //vérification de si $id est bien un chiffre
@@ -60,8 +69,14 @@ class Post
         }
     }
 
-    //méthode qui permet d'inserer un post dans la base de donnée
-    public static function insert($auteur, $objet)
+    /**
+     * Insert un post dans la base de donnée
+     * 
+     * @param string $auteur
+     * @param string $objet
+     * @return bool
+     */
+    public static function insert(string $auteur, string $objet) : bool
     {
         $db = Db::getInstance();
         try {
@@ -76,14 +91,20 @@ class Post
         }
     }
 
-    //méthode qui permet de mettre à jour un post
-    public static function update($id, $content)
+    /**
+     * Met à jour un post
+     * 
+     * @param int $id
+     * @param string $objet
+     * @return bool
+     */
+    public static function update(int $id, string $objet) : bool
     {
         $db = Db::getInstance();
         $validId = intval($id); //vérification de si $id est bien un chiffre
         try {
             $req = $db->prepare('UPDATE posts SET content = :content WHERE id = :id'); //préparation de la requête
-            $req->bindParam(':content', $content);
+            $req->bindParam(':content', $objet);
             $req->bindParam(':id', $validId);
             $result = $req->execute(); //execution de la requête avec les bonnes valeurs
             return $result; //retourne le nombre de modification effectuées ou false si la requete n'a pas fonctionnée
@@ -93,8 +114,13 @@ class Post
         }
     }
 
-    //méthode qui permet de supprmier un post
-    public static function delete($id)
+    /**
+     * Supprime un post
+     * 
+     * @param int $id
+     * @return bool
+     */
+    public static function delete(int $id) : bool
     {
         $db = Db::getInstance();
         $validId = intval($id); //vérification de si $id est bien un chiffre

@@ -1,9 +1,9 @@
 <?php
 /*
   Auteur : Robin Laborde
-  Nom du projet : SiteDB-MVC
-  Description : site web tout simple qui utilise une base de donnée et qui à une structure M.V.C.
-  Version : 01
+  Nom du projet : autoformation-RobinLBRD
+  Description : site web qui utilise une base de donnée et une structure M.V.C.
+  Version : 02
   Classe : I.FDA.P3C
  */
 
@@ -26,7 +26,6 @@ function call($controller, $action) {
         case 'users':
             //appel du model des users
             require_once('models/user.php');
-            //require_once('models/post.php');
             //création d'un UsersController
             $controller = new UsersController();
             break;

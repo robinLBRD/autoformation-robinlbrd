@@ -1,3 +1,13 @@
+<?php
+/*
+  Auteur : Robin Laborde
+  Nom du projet : autoformation-RobinLBRD
+  Description : site web qui utilise une base de donnée et une structure M.V.C.
+  Version : 02
+  Classe : I.FDA.P3C
+ */
+ ?>
+ 
 <p><a href='./accueil.php'>Home</a></p>
 <p><a href='?controller=posts&action=list'>Posts</a></p>
 <?php
