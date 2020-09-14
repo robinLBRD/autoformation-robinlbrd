@@ -8,14 +8,25 @@
  */
 
 //controller des pages
-class PagesController {
-    //page d'accueil
-    public function home() {
+class PagesController
+{
+    /**
+     * affichage page d'accueil
+     *
+     * @return void
+     */
+    public function home(): void
+    {
         require_once('views/pages/home.php');
     }
 
-    //si une erreur est rencontrée
-    public function error() {
+    /**
+     * page affichée si une erreur est rencontrée
+     *
+     * @return void
+     */
+    public function error(): void
+    {
         require_once('./views/pages/error.php');
     }
 }

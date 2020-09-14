@@ -14,6 +14,8 @@ function call($controller, $action) {
     //parcour des controlleurs
     switch ($controller) {
         case 'pages':
+            //appel du model des statistiques
+            require_once('models/statistiques.php');
             //création d'un PagesController
             $controller = new PagesController();
             break;
@@ -36,8 +38,8 @@ function call($controller, $action) {
 
 //varible contenant les différents controlleurs et leurs actions
 $controllers = array('pages' => ['home', 'error'],
-    'posts' => ['list', 'detail', 'create', 'update', 'delete', 'edit', 'insert'],
-    'users' => ['login', 'logout', 'verifyLogin', 'inscription', 'insert']);
+    'posts' => ['list', 'detail', 'insert', 'update', 'delete', 'displayFormUpdate', 'displayFormCreate'],
+    'users' => ['list', 'detail', 'insert', 'update', 'delete', 'verifyLogin', 'logout', 'displayFormCreate', 'displayFormInscription', 'displayFormLogin', 'displayFormUpdate']);
 
 //si le controlleur present dans l'url est un controlleur connu
 if (array_key_exists($controller, $controllers)) {

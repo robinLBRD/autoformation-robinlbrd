@@ -1,5 +1,4 @@
-<?php ob_start();
-session_start();
+<?php
 /*
   Auteur : Robin Laborde
   Nom du projet : autoformation-RobinLBRD
@@ -15,9 +14,6 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
     <title>Gestionnire de Posts</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
@@ -43,35 +39,29 @@ session_start();
     </style>
 </head>
 
+<main role="main">
+    <!-- appel du fichier inc/routes.inc.php qui vas afficher les informations en fonction du controlleur et l'action choisie-->
+    <?php require_once('./inc/routes.inc.php'); ?>
+</main>
+
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+        <!-- fixed-top -->
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <?php require_once("./inc/menu.inc.php"); ?>
-                <!--<li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gérer un post</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Créer</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li>-->
             </ul>
-            <!--<form class="form-inline my-2 my-lg-0">
+            <!-- Ajout d'un input pour rechercher (pas utilisé)
+                <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>-->
         </div>
     </nav>
 
-    <main role="main">
-        <!-- appel du fichier inc/routes.inc.php qui vas afficher les informations en fonction du controlleur et l'action choisie-->
-        <?php require_once('./inc/routes.inc.php'); ?>
-    </main>
-
     <!-- pied de page -->
     <footer class="container">
-        <p>&copy; Robin E. Laborde I.FDA.P3C</p>
+        <p>&copy; Robin E. Laborde I.FDA.P3C 2020-2021</p>
     </footer>
 
     <!--fontawesome script-->
@@ -83,13 +73,16 @@ session_start();
 
     <script type="text/javascript">
         $("a[data-suppression]").click(function() {
-            var lien = $(this).attr("data-suppression"); //recup du lien stocker dans les boutons poubelle
-            $("#btnSuppr").attr("href", lien); // met le lien dans le href du bouton supprmier
+            var lien = $(this).attr("data-suppression"); //recup du lien stocker dans les boutons poubelle des posts
+            $("#btnSuppr").attr("href", lien); // met le lien dans le href du bouton supprmier de la modale
+
+            var auteur = $(this).attr("dataAuteur"); //recup des infos stocker dans les boutons poubelle des posts/utilisateurs
+            $("#auteur").text(auteur); // met le nom de l'auteur dans le <p> de la modale 
+
+            var message = $(this).attr("dataMessage"); //recup des infos stocker dans les boutons poubelle des posts
+            $("#message").text(message); // met le contenu du message dans le <p> de la modale
         });
     </script>
 </body>
 
 </html>
-<?php
-ob_end_flush();
-?>

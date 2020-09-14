@@ -12,7 +12,6 @@
   <div class="contrainer mt-4 col-md-8 offset-md-2">
     <h2>Mettre à jour le post !</h2>
     <div class="ml-3">
-      <!-- une fois que le bouton submit est appuyé alors j'appel la fonction de mise à jour de post -->
       <form method="POST" action="?controller=posts&action=update&id=<?php echo $post->id; ?>">
         <div class="form-group">
           <label for="auteur">Auteur :</label>

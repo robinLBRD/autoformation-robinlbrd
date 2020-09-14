@@ -23,18 +23,7 @@
       <input type="submit" class="btn btn-success" name="valider" value="Valider">
     </form>
     <?php
-    if (!empty($_SESSION["message"])) {
-      $mesMessages = $_SESSION["message"];
-      foreach ($mesMessages as $key => $value) {
-        echo '<br><div class="alert alert-' . $key . ' alert-dismissible fade show" role="alert">
-                    ' . $value . '
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>';
-      }
-      $_SESSION["message"] = [];
-    }
+    require_once("./inc/affichageMessage.inc.php");
     ?>
   </div>
 </div>

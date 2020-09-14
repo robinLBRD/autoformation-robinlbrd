@@ -6,34 +6,44 @@
   Version : 02
   Classe : I.FDA.P3C
  */
-?>
 
-<!-- Main jumbotron for a primary marketing message or call to action -->
+//page d'accueil
+?>
 <div class="jumbotron">
   <div class="container">
     <!-- Affichage du nom d'utilisateur si il est logué -->
-    <h1 class="display-4">Bienvenue <?php $unserName = isset($_SESSION['user_session']) ? $_SESSION['user_session'] : 'Visiteur'; echo $unserName; ?> !</h1>
-    <p>Voici le nouveaux design de mon site réalisé à l'aide bootstrap</p>
+    <h1 class="display-4">Bienvenue <?php $unserName = isset($_SESSION['user_session']) ? $_SESSION['user_session'] : 'Visiteur';
+                                    echo $unserName; ?> !</h1>
+    <p>Voici mon site de gestion de post en structure MVC</p>
+    <?php require_once("./inc/affichageMessage.inc.php") ?>
   </div>
 </div>
 
 <div class="container">
-  <!-- Example row of columns -->
   <div class="row">
-    <div class="col-md-4">
-      <h2>futur affichage de post</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>autre infos</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-      <h2>nous contacter</h2>
-      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-      <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+    <div class="col-md-12">
+      <div class="card border-primary mb-3">
+        <div class="card-header">Statistiques générales</div>
+        <div class="card-body">
+          <div class="card-text">
+            <?php if ($_SESSION["user_session"] == "Admin") { ?>
+              <a href="?controller=users&action=list">
+                <span class="badge badge-success"><?php echo Statistique::nbrUtilisateurs(); ?></span>
+                utilisateurs
+              </a>
+            <?php } else { ?>
+              <span class="badge badge-success"><?php echo Statistique::nbrUtilisateurs(); ?></span>
+              utilisateurs
+            <?php } ?>
+          </div>
+          <div class="card-text mt-2">
+            <a href="?controller=posts&action=list">
+              <span class="badge badge-success"><?php echo Statistique::nbrPosts(); ?></span>
+              posts
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div> <!-- /container -->
+</div>

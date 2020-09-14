@@ -16,7 +16,7 @@
                 <h2>Liste de tous les utilisateurs</h2>
             </div>
             <div class="col-3">
-                <a class="btn btn-primary " href='?controller=posts&action=create'><i class="fas fa-plus-circle"></i> Créer un nouvel utilisateur</a>
+                <a class="btn btn-primary " href='?controller=users&action=displayFormCreate'><i class="fas fa-plus-circle"></i> Créer un nouvel utilisateur</a>
             </div>
         </div>
         <table class="table table-striped">
@@ -32,14 +32,11 @@
                 //parcour de tout les posts de $posts
                 foreach ($users as $user) {
                     echo "<tr class='d-flex'>";
-                    echo "<td class='col-md-3'>" . $users->id . "</td>";
-                    echo "<td class='col-md-7'>" . $users->user . "</td>";
+                    echo "<td class='col-md-3'>" . $user->id . "</td>";
+                    echo "<td class='col-md-7'>" . $user->user . "</td>";
                     echo "<td class='col-md-2'>";
                 ?>
-                    <a class="btn btn-primary" href='?controller=users&action=detail&id=<?php echo $post->id; ?>'><i class="fas fa-info-circle"></i></a>
-                    <a class="btn btn-primary" href='?controller=users&action=edit&id=<?php echo $post->id; ?>'><i class="fa fa-pen"></i></a>
-                    <a class="btn btn-danger" data-suppression="?controller=users&action=delete&id=<?php echo $post->id; ?>" href='#modalDelete' data-toggle="modal"><i class="fa fa-trash"></i></a>
-
+                    <a class="btn btn-danger" dataAuteur="<?php echo "Utilisateur : " . $user->user; ?>" data-suppression="?controller=users&action=delete&id=<?php echo $user->id; ?>" href='#modalDelete' data-toggle="modal"><i class="fa fa-trash"></i></a>
                 <?php
                     echo "</td>";
                 }
@@ -47,18 +44,7 @@
             </tbody>
         </table>
         <?php
-        if (!empty($_SESSION["message"])) {
-            $mesMessages = $_SESSION["message"];
-            foreach ($mesMessages as $key => $value) {
-                echo '<div class="alert alert-' . $key . ' alert-dismissible fade show" role="alert">
-                        ' . $value . '
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>';
-            }
-            $_SESSION["message"] = [];
-        }
+        require_once("./inc/affichageMessage.inc.php");
         ?>
 
         <div id="modalDelete" class="modal fade" role="dialog">
@@ -71,7 +57,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Voulez-vous vraiment suprimer ce post ?</p>
+                        <p>Voulez-vous vraiment suprimer cet utilisateur ?</p>
+                        <p id="auteur"></p>
                     </div>
                     <div class="modal-footer">
                         <a href="" id="btnSuppr" class="btn btn-warning">Oui</a>
